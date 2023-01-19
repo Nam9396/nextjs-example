@@ -1,0 +1,48 @@
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  max-width: 100%;
+  position: absolute;
+  right: 0;
+  margin-right: 40px;
+}
+
+.lastedPost {
+  border-radius: 20px;
+  padding: 20px 10px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #EEF1FF;
+}
+
+.lasted_header {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #5484ab;
+}
+
+.lasted_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lasted_item {
+  padding: 10px 10px;
+  text-align: center;
+  border-bottom: 1px solid #5484ab;
+}
+
+@media (max-width: 1172px) {
+  .sideBar {
+    position: relative;
+    margin: 20px auto;
+  }
+}
