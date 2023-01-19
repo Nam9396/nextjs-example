@@ -29,6 +29,7 @@ const PostGrid = ({ content }) => {
                     alt=""
                     priority
                     fill
+                    size=""
                     className={css.img}
                 />
             </div>

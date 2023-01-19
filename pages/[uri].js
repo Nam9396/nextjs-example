@@ -32,7 +32,7 @@ const URI = ({ post, lasted_post }) => {
         {parse(post.seo.fullHead)}
       </Head>
 
-      <div class={css.uri}>
+      <div className={css.uri}>
 
         <div className={css.content}>
           <Share />
