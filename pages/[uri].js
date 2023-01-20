@@ -110,7 +110,7 @@ export const getStaticPaths = async () => {
   const response = await client.query({
     query: GET_ALL_POST,
   });
-  const posts = response?.data?.posts?.nodes;
+  const posts = response.data.posts.nodes;
   const paths = posts.map(item => ({
     params: {uri: item.uri}
   }));
