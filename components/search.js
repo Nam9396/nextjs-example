@@ -52,7 +52,7 @@ const Search = () => {
           <div className={css.resultList}>
             {data.posts.nodes.map(item => (
               <Link className={css.resultDetail}
-                href={item.uri}
+                href={`${encodeURIComponent(item.uri)}`}
               >{item.title}</Link>
             ))}
             <div className={css.resultDetail}></div>
