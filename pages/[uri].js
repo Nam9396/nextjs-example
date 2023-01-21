@@ -107,17 +107,17 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const response = await client.query({
-    query: GET_ALL_POST,
-  });
-  const posts = response?.data?.posts?.nodes;
-  const paths = posts.map(item => ({
-    params: {uri: item.uri}
-  }));
+  // const response = await client.query({
+  //   query: GET_ALL_POST,
+  // });
+  // const posts = response?.data?.posts?.nodes;
+  // const paths = posts.map(item => ({
+  //   params: {uri: item.uri}
+  // }));
+  const paths = [];
 
   return {
     paths, 
     fallback: true
   }
 };
-
