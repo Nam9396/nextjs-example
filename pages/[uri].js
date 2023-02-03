@@ -17,7 +17,7 @@ const URI = ({ post, lasted_post }) => {
 
   const router = useRouter();
   if (router.isFallback) {
-    return <div>...Fuck</div>
+    return <Loading />
   }
 
   const [ getPost, { loading, error, data } ] = useLazyQuery(GET_POST_BY_GROUP);  
@@ -72,8 +72,8 @@ const URI = ({ post, lasted_post }) => {
       </div>
 
       {loading ? (
-        // <p>Loading...</p>
-        <Loading />
+        <p>Loading...</p>
+        // <Loading />
       ) : error ? (
         <p>{`Error! ${error}`}</p>
       ) : data ? (
