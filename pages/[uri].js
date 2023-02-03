@@ -11,12 +11,13 @@ import { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
 import Head from "next/head";
 import parse from 'html-react-parser';
+import Loading from "../components/loading";
 
 const URI = ({ post, lasted_post }) => {
 
   const router = useRouter();
   if (router.isFallback) {
-    return <div>Loading...</div>
+    return <div>...Fuck</div>
   }
 
   const [ getPost, { loading, error, data } ] = useLazyQuery(GET_POST_BY_GROUP);  
@@ -71,7 +72,8 @@ const URI = ({ post, lasted_post }) => {
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        // <p>Loading...</p>
+        <Loading />
       ) : error ? (
         <p>{`Error! ${error}`}</p>
       ) : data ? (
