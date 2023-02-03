@@ -22,6 +22,7 @@ const PostGrid = ({ content }) => {
           <Link className={css.post_card} key={post.title}
             href={`${encodeURIComponent(post.uri)}`}
           >
+          <a target="_blank" rel="noopener noreferrer">
             <div className={css.group}>{post.categories.nodes[0].name}</div>
             <div className={css.imgBox}>
                 <Image
@@ -34,6 +35,7 @@ const PostGrid = ({ content }) => {
                 />
             </div>
             <div className={css.title}>{post.title}</div>    
+          </a>
           </Link>
         ))}
         
