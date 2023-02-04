@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 const PostGrid = ({ content }) => {
-  const [ end, setEnd ] = useState(10);
+  const [ end, setEnd ] = useState(100);
   const posts = content.slice(0, end);
   const next = () => {
     setEnd(end + 10);
@@ -19,10 +19,13 @@ const PostGrid = ({ content }) => {
 
       <div className={css.grid}>
         {posts.map(post => (
-          <Link className={css.post_card} key={post.title}
-            href={`${encodeURIComponent(post.uri)}`}
+          <Link
+            key={post.title}
+            href={`${encodeURIComponent(post.uri)}` }
+            target="_blank" rel="noopener noreferrer" 
+            className={css.post_card}
+            prefetch={false}
           >
-          <a target="_blank" rel="noopener noreferrer">
             <div className={css.group}>{post.categories.nodes[0].name}</div>
             <div className={css.imgBox}>
                 <Image
@@ -34,8 +37,7 @@ const PostGrid = ({ content }) => {
                     className={css.img}
                 />
             </div>
-            <div className={css.title}>{post.title}</div>    
-          </a>
+            <div className={css.title}>{post.title}</div>
           </Link>
         ))}
         

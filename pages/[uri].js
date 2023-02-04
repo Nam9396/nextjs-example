@@ -7,11 +7,13 @@ import Layout from "../components/layout";
 import { useRouter } from "next/router";
 import Share from "../components/share-bar";
 import PostGrid from "../components/post-gird";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import Head from "next/head";
 import parse from 'html-react-parser';
 import Loading from "../components/loading";
+import Link from "next/link";
+import paths from "../lib/paths";
 
 const URI = ({ post, lasted_post }) => {
 
@@ -26,6 +28,8 @@ const URI = ({ post, lasted_post }) => {
     getPost({ variables: { categoryIn: post.categories.nodes[0].id } });
   }, [post]);
 
+  const [ link, setLink ] = useState("");
+
   return (
     <Layout>
 
@@ -37,7 +41,6 @@ const URI = ({ post, lasted_post }) => {
 
         <div className={css.content}>
           <Share />
-
           <div className={css.imgBox}>
             <Image
                 priority
@@ -49,22 +52,28 @@ const URI = ({ post, lasted_post }) => {
             />  
           </div>
 
-          <div  
-            onClick={e => {
-              e.preventDefault();
-              const link = e.target.href;
-              if (!link.includes("#")) {
-                const internalLink = e.target.href.slice(22);
-                router.push(`${encodeURIComponent(internalLink)}`); 
-              } else {
-                router.push(link);
-              }
-            }}
+
+          <Link
+            href={link || ""}
+            target="_blank" rel="noopener noreferrer"
+            legacyBehavior
           >
-            <article className={css.article}
+            <article 
+              className={css.article}
               dangerouslySetInnerHTML={{__html: post.content}}
+              onClick={e => {
+                e.preventDefault();
+                const postLink = e.target.href;
+                if (postLink.includes("bibohealth.com")) {
+                  const internalLink = e.target.href.slice(22);
+                  router.push(`${encodeURIComponent(internalLink)}`);
+                } else {
+                  setLink(postLink);
+                }
+              }}
             ></article>
-          </div>
+          </Link>
+
         </div>
         
         <Side_bar lasted_post={lasted_post} />
@@ -109,13 +118,14 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const response = await client.query({
-    query: GET_ALL_POST,
-  });
-  const posts = response?.data?.posts?.nodes;
-  const paths = posts.map(item => ({
-    params: {uri: item.uri}
-  }));
+  // const response = await client.query({
+  //   query: GET_ALL_POST,
+  // });
+  // const posts = response?.data?.posts?.nodes;
+  // const paths = posts.map(item => ({
+  //   params: {uri: item.uri}
+  // }));
+  const paths = []
 
   return {
     paths, 
