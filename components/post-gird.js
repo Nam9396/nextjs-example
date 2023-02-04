@@ -24,7 +24,6 @@ const PostGrid = ({ content }) => {
             href={`${encodeURIComponent(post.uri)}` }
             target="_blank" rel="noopener noreferrer" 
             className={css.post_card}
-            prefetch={false}
           >
             <div className={css.group}>{post.categories.nodes[0].name}</div>
             <div className={css.imgBox}>
@@ -44,7 +43,7 @@ const PostGrid = ({ content }) => {
       </div>
 
       <div className={css.button_box}>
-        {posts.length > 10 && <button onClick={back} >Back</button>}
+        {posts.length > 10 && <button onClick={back}>Back</button>}
         {posts.length < content.length && <button onClick={next}>Next</button>}    
       </div>    
       
