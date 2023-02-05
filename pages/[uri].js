@@ -13,7 +13,6 @@ import Head from "next/head";
 import parse from 'html-react-parser';
 import Loading from "../components/loading";
 import Link from "next/link";
-import paths from "../lib/paths";
 
 const URI = ({ post, lasted_post }) => {
 
