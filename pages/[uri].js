@@ -93,6 +93,8 @@ const URI = ({ post, lasted_post }) => {
   )    
 };
 
+export default URI;
+
 export const getStaticProps = async ({ params }) => {
   const response_1 = await client.query ({
     query: GET_POST_BY_URI,
