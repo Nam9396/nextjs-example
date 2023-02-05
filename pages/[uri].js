@@ -56,6 +56,7 @@ const URI = ({ post, lasted_post }) => {
             href={link || ""}
             target="_blank" rel="noopener noreferrer"
             legacyBehavior
+            passHref
           >
             <article 
               className={css.article}
