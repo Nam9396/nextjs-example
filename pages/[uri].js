@@ -1,7 +1,7 @@
 import css from "../styles/uri.module.css";
 import Image from "next/image";
 import client from "../lib/apollo";
-import { GET_ALL_POST, GET_LASTED_POST, GET_POST_BY_GROUP, GET_POST_BY_URI } from "../lib/function";
+import { GET_LASTED_POST, GET_POST_BY_GROUP, GET_POST_BY_URI, GET_URI_100, GET_URI_ABOVE_100 } from "../lib/function";
 import Side_bar from "../components/side-bar";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -93,8 +93,6 @@ const URI = ({ post, lasted_post }) => {
   )    
 };
 
-export default URI;
-
 export const getStaticProps = async ({ params }) => {
   const response_1 = await client.query ({
     query: GET_POST_BY_URI,
@@ -118,14 +116,22 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const response = await client.query({
-    query: GET_ALL_POST,
+  const response1 = await client.query({
+    query: GET_URI_100,
   });
-  const posts = response?.data?.posts?.nodes;
-  const paths = posts.map(item => ({
+  const response2 = await client.query({
+    query: GET_URI_ABOVE_100,
+  });
+  const uri_100 = response1?.data?.posts?.nodes;
+  const uri_above_100 = response2?.data?.posts?.nodes;
+  const paths_100 = uri_100.map(item => ({
     params: {uri: item.uri}
   }));
-  
+  const paths_above_100 = uri_above_100.map(item => ({
+    params: {uri: item.uri}
+  }));
+  const paths = paths_100.concat(paths_above_100);
+
   return {
     paths, 
     fallback: true
