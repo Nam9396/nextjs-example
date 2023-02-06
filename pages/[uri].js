@@ -12,7 +12,6 @@ import { useLazyQuery } from "@apollo/client";
 import Head from "next/head";
 import parse from 'html-react-parser';
 import Loading from "../components/loading";
-import Link from "next/link";
 
 const URI = ({ post, lasted_post }) => {
 
@@ -26,8 +25,6 @@ const URI = ({ post, lasted_post }) => {
   useEffect(() => {
     getPost({ variables: { categoryIn: post.categories.nodes[0].id } });
   }, [post]);
-
-  const [ link, setLink ] = useState("");
 
   return (
     <Layout>
@@ -52,27 +49,25 @@ const URI = ({ post, lasted_post }) => {
           </div>
 
 
-          <Link
-            href={link || ""}
-            target="_blank" rel="noopener noreferrer"
-            legacyBehavior
-            passHref
-          >
+          <div onClick={(e) => {
+            e.preventDefault();
+            const url = e.target.href;
+            if (url.includes("bibohealth.com")) {
+              const internalLink = url.slice(22);
+              // router.push(`${encodeURIComponent(internalLink)}`);
+              window.open(`https://blog.bibohealth.com/${encodeURIComponent(internalLink)}`,
+              '_blank', 'noopener,noreferrer'
+              );
+            } else {
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }
+          }} className={css.article}>
+
             <article 
-              className={css.article}
               dangerouslySetInnerHTML={{__html: post.content}}
-              onClick={e => {
-                e.preventDefault();
-                const postLink = e.target.href;
-                if (postLink.includes("bibohealth.com")) {
-                  const internalLink = e.target.href.slice(22);
-                  router.push(`${encodeURIComponent(internalLink)}`);
-                } else {
-                  setLink(postLink);
-                }
-              }}
             ></article>
-          </Link>
+
+          </div>
 
         </div>
         
