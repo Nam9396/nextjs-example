@@ -12,10 +12,7 @@ const Cham_soc_tre = ({ be_khoe, be_benh, so_cap_cuu }) => {
 
       <Head>
         <title>Chăm sóc trẻ</title>
-        <meta
-          name="description"
-          content="Xử trí khi bé bị bệnh và cách chăm sóc con hàng ngày"
-        />
+        <meta name="description" content="Xử trí khi bé bị bệnh và cách chăm sóc con hàng ngày"/>
       </Head>
 
       <div className={css.outerBox}>

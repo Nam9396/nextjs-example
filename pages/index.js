@@ -13,10 +13,7 @@ const Home = ({ all_post }) => {
     <Layout>
 
       <Head>
-        <meta
-          name="description"
-          content="Website chuyên về sức khỏe trẻ em"
-        />
+        <meta name="description" content="Website hỗ trợ cha mẹ trong quá trình chăm sóc con"/>
         <title>BiboHealth</title>
       </Head>
 

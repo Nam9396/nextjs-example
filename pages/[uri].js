@@ -7,7 +7,7 @@ import Layout from "../components/layout";
 import { useRouter } from "next/router";
 import Share from "../components/share-bar";
 import PostGrid from "../components/post-gird";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
 import Head from "next/head";
 import parse from 'html-react-parser';
@@ -36,7 +36,7 @@ const URI = ({ post, lasted_post }) => {
       <div className={css.uri}>
 
         <div className={css.content}>
-          <Share />
+          <Share postUri={post.uri} />
           <div className={css.imgBox}>
             <Image
                 priority
@@ -77,7 +77,6 @@ const URI = ({ post, lasted_post }) => {
 
       {loading ? (
         <p>Loading...</p>
-        // <Loading />
       ) : error ? (
         <p>{`Error! ${error}`}</p>
       ) : data ? (
@@ -134,3 +133,17 @@ export const getStaticPaths = async () => {
     fallback: true
   }
 };
+
+// export const getStaticPaths = async () => {
+//   const response1 = await client.query({
+//     query: GET_URI_100,
+//   });
+//   const uri_100 = response1?.data?.posts?.nodes;
+//   const paths = uri_100.map(item => ({
+//     params: {uri: item.uri}
+//   }));
+//   return {
+//     paths, 
+//     fallback: true
+//   }
+// };

@@ -12,10 +12,7 @@ const Phat_trien = ({ so_sinh, rang_sua, di_hoc, day_thi }) => {
 
       <Head>
         <title>Phát triển</title>
-        <meta
-          name="description"
-          content="Theo dõi phát triển thể chất và tinh thần của bé yêu"
-        />
+        <meta name="description" content="Theo dõi phát triển thể chất và tinh thần của bé yêu"/>
       </Head>
 
       <div className={css.outerBox}>

@@ -12,10 +12,7 @@ const Dinh_duong = ({ an_dam, dinh_duong_hang_ngay, thuc_pham_bo_sung }) => {
 
       <Head>
         <title>Dinh dưỡng</title>
-        <meta
-          name="description"
-          content="Ăn dặm, uống sữa, bổ sung vitamin và buổi ăn hàng ngày cho trẻ"
-        />
+        <meta name="description" content="Ăn dặm, uống sữa, bổ sung vitamin và buổi ăn hàng ngày cho bé"/>
       </Head>
 
       <div className={css.outerBox}>

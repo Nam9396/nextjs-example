@@ -1,18 +1,15 @@
 import Footer from "./footer";
 import css from "./layout.module.css";
-import Main from "./main";
+import Meta from "./meta";
 import Nav from "./nav";
 
 const Layout = ({ children }) => {
   return (
     <div className={css.layout}>
-
+      <Meta />
       <Nav/>
-
-      <Main children={children} />
-
+      <main className={css.main}>{children}</main>
       <Footer />
-    
     </div>
   )
 };
