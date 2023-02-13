@@ -30,7 +30,7 @@ const URI = ({ post, lasted_post }) => {
     <Layout>
 
       <Head>
-        {parse(post.seo.fullHead)}
+        {/* {parse(post.seo.fullHead)} */}
       </Head>
 
       <div className={css.uri}>
@@ -47,7 +47,7 @@ const URI = ({ post, lasted_post }) => {
                 className={css.img}
             />  
           </div>
-
+          <div>{post.seo.fullHead}</div>
 
           <div onClick={(e) => {
             e.preventDefault();
