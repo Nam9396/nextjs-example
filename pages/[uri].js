@@ -30,7 +30,7 @@ const URI = ({ post, lasted_post }) => {
     <Layout>
 
       <Head>
-        {/* {parse(post.seo.fullHead)} */}
+        {parse(post.seo.fullHead)}
       </Head>
 
       <div className={css.uri}>
@@ -55,7 +55,7 @@ const URI = ({ post, lasted_post }) => {
             if (url.includes("bibohealth.com")) {
               const internalLink = url.slice(22);
               // router.push(`${encodeURIComponent(internalLink)}`);
-              window.open(`https://blog.bibohealth.com/${encodeURIComponent(internalLink)}`,
+              window.open(`https://blog.bibohealth.com${encodeURIComponent(internalLink)}`,
               '_blank', 'noopener,noreferrer'
               );
             } else {
@@ -111,39 +111,39 @@ export const getStaticProps = async ({ params }) => {
   }
 };
 
-export const getStaticPaths = async () => {
-  const response1 = await client.query({
-    query: GET_URI_100,
-  });
-  const response2 = await client.query({
-    query: GET_URI_ABOVE_100,
-  });
-  const uri_100 = response1?.data?.posts?.nodes;
-  const uri_above_100 = response2?.data?.posts?.nodes;
-  const paths_100 = uri_100.map(item => ({
-    params: {uri: item.uri}
-  }));
-  const paths_above_100 = uri_above_100.map(item => ({
-    params: {uri: item.uri}
-  }));
-  const paths = paths_100.concat(paths_above_100);
-
-  return {
-    paths, 
-    fallback: true
-  }
-};
-
 // export const getStaticPaths = async () => {
 //   const response1 = await client.query({
 //     query: GET_URI_100,
 //   });
+//   const response2 = await client.query({
+//     query: GET_URI_ABOVE_100,
+//   });
 //   const uri_100 = response1?.data?.posts?.nodes;
-//   const paths = uri_100.map(item => ({
+//   const uri_above_100 = response2?.data?.posts?.nodes;
+//   const paths_100 = uri_100.map(item => ({
 //     params: {uri: item.uri}
 //   }));
+//   const paths_above_100 = uri_above_100.map(item => ({
+//     params: {uri: item.uri}
+//   }));
+//   const paths = paths_100.concat(paths_above_100);
+
 //   return {
 //     paths, 
 //     fallback: true
 //   }
 // };
+
+export const getStaticPaths = async () => {
+  const response1 = await client.query({
+    query: GET_URI_100,
+  });
+  const uri_100 = response1?.data?.posts?.nodes;
+  const paths = uri_100.map(item => ({
+    params: {uri: item.uri}
+  }));
+  return {
+    paths, 
+    fallback: true
+  }
+};
