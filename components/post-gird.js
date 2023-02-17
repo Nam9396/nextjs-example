@@ -21,7 +21,7 @@ const PostGrid = ({ content }) => {
         {posts.map(post => (
           <Link
             key={post.title}
-            href={`${encodeURIComponent(post.uri)}` }
+            href={`/posts/${post.slug}`}
             target="_blank" rel="noopener noreferrer" 
             className={css.post_card}
           >

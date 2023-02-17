@@ -10,11 +10,11 @@ import {
     EmailIcon,
 } from 'next-share';
 
-const Share = ({ postUri }) => {
+const Share = ({ postSlug }) => {
     return (
       <div className={css.shareBar}>
         <FacebookShareButton
-            url={`https://blog.bibohealth.com/${encodeURIComponent(postUri)}`}
+            url={`https://blog.bibohealth.com/posts/${postSlug}`}
             className={css.button}
             hashtag={'#bibohealth'}
         >
@@ -22,21 +22,21 @@ const Share = ({ postUri }) => {
         </FacebookShareButton>
 
         <FacebookMessengerShareButton
-            url={`https://blog.bibohealth.com/${encodeURIComponent(postUri)}`}
+            url={`https://blog.bibohealth.com/posts/${postSlug}`}
             className={css.button}
         >
           <FacebookMessengerIcon size={30} round className={css.icon}/>
         </FacebookMessengerShareButton>
 
         <TwitterShareButton
-            url={`https://blog.bibohealth.com/${encodeURIComponent(postUri)}`}
+            url={`https://blog.bibohealth.com/posts/${postSlug}`}
             className={css.button}
         >
           <TwitterIcon size={30} round className={css.icon} />
         </TwitterShareButton>
 
         <EmailShareButton
-            url={`https://blog.bibohealth.com/${encodeURIComponent(postUri)}`}
+            url={`https://blog.bibohealth.com/posts/${postSlug}`}
             className={css.button}
         >
           <EmailIcon size={30} round className={css.icon} />

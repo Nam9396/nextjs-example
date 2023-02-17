@@ -11,7 +11,7 @@ const Side_bar = ({ lasted_post }) => {
           {lasted_post.map(item => (
             <Link
               className={css.lasted_item} 
-              href={`${encodeURIComponent(item.uri)}`} 
+              href={`/posts/${item.slug}`} 
               key={item.id}
             >{item.title}</Link>
           ))}
