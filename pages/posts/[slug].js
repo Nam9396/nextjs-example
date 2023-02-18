@@ -10,7 +10,6 @@ import PostGrid from "../../components/post-gird";
 import { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
 import Head from "next/head";
-import parse from 'html-react-parser';
 import Loading from "../../components/loading";
 import PostMeta from "../../components/postMeta";
 
@@ -30,11 +29,9 @@ const SLUG = ({ post, lasted_post }) => {
   return (
     <Layout>
 
-      <Head>
-        <PostMeta postSeo={post.seo} /> 
-      </Head>
+      <PostMeta postSeo={post.seo} /> 
       
-      <div className={css.uri}>
+      <div className={css.slug}>
 
         <div className={css.content}>
           <Share postSlug={post.slug} />
