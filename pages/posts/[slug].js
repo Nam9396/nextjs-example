@@ -1,19 +1,19 @@
-import css from "../styles/uri.module.css";
+import css from "../../styles/uri.module.css";
 import Image from "next/image";
-import client from "../lib/apollo";
-import { GET_LASTED_POST, GET_POST_BY_GROUP, GET_POST_BY_URI, GET_URI_100, GET_URI_ABOVE_100 } from "../lib/function";
-import Side_bar from "../components/side-bar";
-import Layout from "../components/layout";
+import client from "../../lib/apollo";
+import { GET_LASTED_POST, GET_POST_BY_GROUP, GET_POST_BY_SLUG, GET_SLUG_100, GET_SLUG_50, GET_SLUG_ABOVE_100, GET_URI_100, GET_URI_ABOVE_100, replaceUri } from "../../lib/function";
+import Side_bar from "../../components/side-bar";
+import Layout from "../../components/layout";
 import { useRouter } from "next/router";
-import Share from "../components/share-bar";
-import PostGrid from "../components/post-gird";
+import Share from "../../components/share-bar";
+import PostGrid from "../../components/post-gird";
 import { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
 import Head from "next/head";
 import parse from 'html-react-parser';
-import Loading from "../components/loading";
+import Loading from "../../components/loading";
 
-const URI = ({ post, lasted_post }) => {
+const SLUG = ({ post, lasted_post }) => {
 
   const router = useRouter();
   if (router.isFallback) {
@@ -53,11 +53,11 @@ const URI = ({ post, lasted_post }) => {
             e.preventDefault();
             const url = e.target.href;
             if (url.includes("bibohealth.com")) {
-              const internalLink = url.slice(22);
-              // router.push(`${encodeURIComponent(internalLink)}`);
-              window.open(`https://blog.bibohealth.com/${encodeURIComponent(internalLink)}`,
-              '_blank', 'noopener,noreferrer'
-              );
+              const internalLink = replaceUri(url);
+              router.push(`/posts/${internalLink}`);
+              // window.open(`https://blog.bibohealth.com/posts/${internalLink}`,
+              // '_blank', 'noopener,noreferrer'
+              // );
             } else {
               window.open(url, '_blank', 'noopener,noreferrer');
             }
@@ -87,13 +87,13 @@ const URI = ({ post, lasted_post }) => {
   )    
 };
 
-export default URI;
+export default SLUG;
 
 export const getStaticProps = async ({ params }) => {
   const response_1 = await client.query ({
-    query: GET_POST_BY_URI,
+    query: GET_POST_BY_SLUG,
     variables: {
-      id: params.uri
+      id: params.slug
     }
   });
   const response_2 = await client.query({
@@ -111,39 +111,39 @@ export const getStaticProps = async ({ params }) => {
   }
 };
 
-export const getStaticPaths = async () => {
-  const response1 = await client.query({
-    query: GET_URI_100,
-  });
-  const response2 = await client.query({
-    query: GET_URI_ABOVE_100,
-  });
-  const uri_100 = response1?.data?.posts?.nodes;
-  const uri_above_100 = response2?.data?.posts?.nodes;
-  const paths_100 = uri_100.map(item => ({
-    params: {uri: item.uri}
-  }));
-  const paths_above_100 = uri_above_100.map(item => ({
-    params: {uri: item.uri}
-  }));
-  const paths = paths_100.concat(paths_above_100);
-
-  return {
-    paths, 
-    fallback: true
-  }
-};
-
 // export const getStaticPaths = async () => {
 //   const response1 = await client.query({
-//     query: GET_URI_100,
+//     query: GET_SLUG_100
 //   });
-//   const uri_100 = response1?.data?.posts?.nodes;
-//   const paths = uri_100.map(item => ({
-//     params: {uri: item.uri}
+//   const response2 = await client.query({
+//     query: GET_SLUG_ABOVE_100
+//   });
+//   const slug_100 = response1?.data?.posts?.nodes;
+//   const slug_above_100 = response2?.data?.posts?.nodes;
+//   const paths_100 = slug_100.map(item => ({
+//     params: {slug: item.slug}
 //   }));
+//   const paths_above_100 = slug_above_100.map(item => ({
+//     params: {slug: item.slug}
+//   }));
+//   const paths = paths_100.concat(paths_above_100);
+
 //   return {
 //     paths, 
 //     fallback: true
 //   }
 // };
+
+export const getStaticPaths = async () => {
+  const response1 = await client.query({
+    query: GET_SLUG_50
+  });
+  const slug_50 = response1?.data?.posts?.nodes;
+  const paths = slug_50.map(item => ({
+    params: {slug: item.slug}
+  }));
+  return {
+    paths, 
+    fallback: true
+  }
+};
