@@ -36,7 +36,7 @@ const SLUG = ({ post, lasted_post }) => {
       <div className={css.uri}>
 
         <div className={css.content}>
-          <Share postUri={post.uri} />
+          <Share postSlug={post.slug} />
           <div className={css.imgBox}>
             <Image
                 priority
