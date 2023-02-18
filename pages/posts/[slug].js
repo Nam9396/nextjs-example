@@ -12,6 +12,7 @@ import { useLazyQuery } from "@apollo/client";
 import Head from "next/head";
 import parse from 'html-react-parser';
 import Loading from "../../components/loading";
+import PostMeta from "../../components/postMeta";
 
 const SLUG = ({ post, lasted_post }) => {
 
@@ -30,9 +31,9 @@ const SLUG = ({ post, lasted_post }) => {
     <Layout>
 
       <Head>
-        {parse(post.seo.fullHead)}
+        <PostMeta postSeo={post.seo} /> 
       </Head>
-
+      
       <div className={css.uri}>
 
         <div className={css.content}>
@@ -48,7 +49,7 @@ const SLUG = ({ post, lasted_post }) => {
             />  
           </div>
 
-
+          <div>{post.seo.fullHead}</div>
           <div onClick={(e) => {
             e.preventDefault();
             const url = e.target.href;
@@ -111,39 +112,39 @@ export const getStaticProps = async ({ params }) => {
   }
 };
 
-// export const getStaticPaths = async () => {
-//   const response1 = await client.query({
-//     query: GET_SLUG_100
-//   });
-//   const response2 = await client.query({
-//     query: GET_SLUG_ABOVE_100
-//   });
-//   const slug_100 = response1?.data?.posts?.nodes;
-//   const slug_above_100 = response2?.data?.posts?.nodes;
-//   const paths_100 = slug_100.map(item => ({
-//     params: {slug: item.slug}
-//   }));
-//   const paths_above_100 = slug_above_100.map(item => ({
-//     params: {slug: item.slug}
-//   }));
-//   const paths = paths_100.concat(paths_above_100);
-
-//   return {
-//     paths, 
-//     fallback: true
-//   }
-// };
-
 export const getStaticPaths = async () => {
   const response1 = await client.query({
-    query: GET_SLUG_50
+    query: GET_SLUG_100
   });
-  const slug_50 = response1?.data?.posts?.nodes;
-  const paths = slug_50.map(item => ({
+  const response2 = await client.query({
+    query: GET_SLUG_ABOVE_100
+  });
+  const slug_100 = response1?.data?.posts?.nodes;
+  const slug_above_100 = response2?.data?.posts?.nodes;
+  const paths_100 = slug_100.map(item => ({
     params: {slug: item.slug}
   }));
+  const paths_above_100 = slug_above_100.map(item => ({
+    params: {slug: item.slug}
+  }));
+  const paths = paths_100.concat(paths_above_100);
+
   return {
     paths, 
     fallback: true
   }
 };
+
+// export const getStaticPaths = async () => {
+//   const response1 = await client.query({
+//     query: GET_SLUG_50
+//   });
+//   const slug_50 = response1?.data?.posts?.nodes;
+//   const paths = slug_50.map(item => ({
+//     params: {slug: item.slug}
+//   }));
+//   return {
+//     paths, 
+//     fallback: true
+//   }
+// };
