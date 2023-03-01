@@ -1,7 +1,7 @@
 import PostGrid from "../components/post-gird";
 import css from "../styles/page.module.css";
 import client from "../lib/apollo";
-import { GET_AN_DAM, GET_DINH_DUONG_HANG_NGAY, GET_THUC_PHAM_BO_SUNG } from "../lib/function";
+import { GET_AN_DAM, GET_DINH_DUONG_HANG_NGAY, GET_THUC_PHAM_BO_SUNG } from "../lib/postByCate";
 import Layout from "../components/layout";
 import Head from "next/head";
 
@@ -13,6 +13,7 @@ const Dinh_duong = ({ an_dam, dinh_duong_hang_ngay, thuc_pham_bo_sung }) => {
       <Head>
         <title>Dinh dưỡng</title>
         <meta name="description" content="Ăn dặm, uống sữa, bổ sung vitamin và buổi ăn hàng ngày cho bé"/>
+        <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"></meta>
       </Head>
 
       <div className={css.outerBox}>

@@ -1,7 +1,7 @@
 import css from "../../styles/uri.module.css";
 import Image from "next/image";
 import client from "../../lib/apollo";
-import { GET_LASTED_POST, GET_POST_BY_GROUP, GET_POST_BY_SLUG, GET_SLUG_100, GET_SLUG_50, GET_SLUG_ABOVE_100, GET_URI_100, GET_URI_ABOVE_100, replaceUri } from "../../lib/function";
+import { createPathsParams, GET_LASTED_POST, GET_POST_BY_GROUP, GET_POST_BY_SLUG, GET_SLUG_50, replaceUri, getPostsByCategories } from "../../lib/function";
 import Side_bar from "../../components/side-bar";
 import Layout from "../../components/layout";
 import { useRouter } from "next/router";
@@ -9,7 +9,6 @@ import Share from "../../components/share-bar";
 import PostGrid from "../../components/post-gird";
 import { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
-import Head from "next/head";
 import Loading from "../../components/loading";
 import PostMeta from "../../components/postMeta";
 
@@ -53,7 +52,7 @@ const SLUG = ({ post, lasted_post }) => {
             if (url.includes("bibohealth.com")) {
               const internalLink = replaceUri(url);
               router.push(`/posts/${internalLink}`);
-              // window.open(`https://blog.bibohealth.com/posts/${internalLink}`,
+              // window.open(`https://bacsichobeyeu.com/posts/${internalLink}`,
               // '_blank', 'noopener,noreferrer'
               // );
             } else {
@@ -104,33 +103,12 @@ export const getStaticProps = async ({ params }) => {
   return {
     props: {
       post,
-      lasted_post
+      lasted_post,
     }
   }
 };
 
-export const getStaticPaths = async () => {
-  const response1 = await client.query({
-    query: GET_SLUG_100
-  });
-  const response2 = await client.query({
-    query: GET_SLUG_ABOVE_100
-  });
-  const slug_100 = response1?.data?.posts?.nodes;
-  const slug_above_100 = response2?.data?.posts?.nodes;
-  const paths_100 = slug_100.map(item => ({
-    params: {slug: item.slug}
-  }));
-  const paths_above_100 = slug_above_100.map(item => ({
-    params: {slug: item.slug}
-  }));
-  const paths = paths_100.concat(paths_above_100);
-
-  return {
-    paths, 
-    fallback: true
-  }
-};
+export const getStaticPaths = createPathsParams;
 
 // export const getStaticPaths = async () => {
 //   const response1 = await client.query({

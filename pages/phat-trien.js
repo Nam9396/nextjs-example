@@ -2,7 +2,7 @@ import PostGrid from "../components/post-gird";
 import css from "../styles/page.module.css";
 import client from "../lib/apollo";
 import Layout from "../components/layout";
-import { GET_DAY_THI, GET_DI_HOC, GET_RANG_SUA, GET_SO_SINH } from "../lib/function";
+import { GET_DAY_THI, GET_DI_HOC, GET_RANG_SUA, GET_SO_SINH } from "../lib/postByCate";
 import Head from "next/head";
 
 const Phat_trien = ({ so_sinh, rang_sua, di_hoc, day_thi }) => {
@@ -13,6 +13,7 @@ const Phat_trien = ({ so_sinh, rang_sua, di_hoc, day_thi }) => {
       <Head>
         <title>Phát triển</title>
         <meta name="description" content="Theo dõi phát triển thể chất và tinh thần của bé yêu"/>
+        <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"></meta>
       </Head>
 
       <div className={css.outerBox}>

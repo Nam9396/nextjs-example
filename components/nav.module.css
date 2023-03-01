@@ -24,6 +24,10 @@
   align-items: center;
 }
 
+.img {
+  margin: 0px auto;
+}
+
 .menuItem {
   margin-right: 80px;
   font-weight: bold;

@@ -1,6 +1,6 @@
 import css from "./nav.module.css";
 import Image from "next/image";
-import logo from "../public/logo.png";
+import longlogo2 from "../public/longlogo2.png";
 import Link from "next/link";
 
 const Nav = () => {
@@ -8,7 +8,7 @@ const Nav = () => {
     <nav className={css.nav}>
       <Link className={css.imgBox} href="/">
         <Image
-          src={logo}
+          src={longlogo2}
           width={250}
           height={150}
           priority

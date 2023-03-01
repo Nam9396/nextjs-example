@@ -14,7 +14,8 @@ const Home = ({ all_post }) => {
 
       <Head>
         <meta name="description" content="Website hỗ trợ cha mẹ trong quá trình chăm sóc con"/>
-        <title>BiboHealth</title>
+        <title>bacsichobeyeu</title>
+        <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"></meta>
       </Head>
 
       <div className={css.home}>
@@ -34,7 +35,7 @@ const Home = ({ all_post }) => {
         </div>
 
         <div className={css.introBox}>
-          Chào mừng bạn đến với BiboHealth, trang web về chăm sóc sức khoẻ trẻ em dành cho các bậc cha mẹ. Thông tin y khoa tại đây được xây dựng bởi các bác sĩ nhi khoa và dược sĩ
+          Chào mừng bạn đến với BacsichoBeyeu, trang web về chăm sóc sức khoẻ trẻ em dành cho các bậc cha mẹ. Thông tin y khoa tại đây được xây dựng bởi các bác sĩ nhi khoa và dược sĩ
         </div>
 
         <Search />
@@ -43,9 +44,9 @@ const Home = ({ all_post }) => {
 
         <div className={css.infoBox}>
           <div className={css.infoCard}>
-            <div className={css.infoHeader}>BiboHealth làm gì</div>
+            <div className={css.infoHeader}>BacsichoBeyeu làm gì</div>
             <div className={css.divider}></div>
-            <div className={css.infoDetail}>BiboHealth được tạo ra với một mục tiêu đơn giản: giúp các bậc cha mẹ có thể tìm được câu trả lời cho các thắc mắc trong quá trình nuôi con</div>
+            <div className={css.infoDetail}>BacsichoBeyeu được tạo ra với một mục tiêu đơn giản: giúp các bậc cha mẹ có thể tìm được câu trả lời cho các thắc mắc trong quá trình nuôi con</div>
           </div>
           <div className={css.infoCard}>
             <div className={css.infoHeader}>Nguồn tài liệu tin cậy</div>
