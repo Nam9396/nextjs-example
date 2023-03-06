@@ -1,6 +1,6 @@
 import Image from "next/image";
 import css from "./footer.module.css";
-import favicon from "../public/favicon.ico";
+import newfavicon from "../public/newfavicon.ico";
 import Link from "next/link";
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
 
       <div className={css.imgBox}>
         <Image
-          src={favicon}
+          src={newfavicon}
           width={200}
           height={200}
           priority

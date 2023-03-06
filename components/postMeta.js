@@ -13,7 +13,7 @@ const PostMeta = ({ postSeo }) => {
       <meta property="og:title" content={changeTitle(postSeo.title)} />
       <meta property="og:description" content={postSeo.description} />
       <meta property="og:url" content={changeCanonical(postSeo.canonicalUrl)} />
-      <meta property="og:site_name" content="Blog.BiboHealth"></meta>
+      <meta property="og:site_name" content="bacsichobeyeu"></meta>
     </Head>
   )
 };
