@@ -1,8 +1,8 @@
 // import { createFinalSiteMap } from "../lib/function";
 
-// const SiteMap = () => {};
+const SiteMap = () => {};
 
-// export default SiteMap;
+export default SiteMap;
 
 // export const getServerSideProps = async ({ res }) => {
 //   const sitemap = await createFinalSiteMap();
