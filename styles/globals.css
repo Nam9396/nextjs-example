@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+@tailwind base;
+@layer base {
+  li {
+    @apply list-disc;
+  }
+}
+
+@tailwind components;
+@layer components {
+  .box-col {
+    display: flex;
+    flex-direction: column;
+  }
+  .box-row { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .sm-card-box {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px auto;
+    border-radius: 10px;
+  }
+  .sm-img-box {
+    width: 40%;
+    height: 180px;
+  }
+  .sm-header-box {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .lg-card-box {
+    width: 250px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 10px;
+    border-radius: 10px;
+  }
+  .lg-img-box {
+    width: 100%;
+    padding-bottom: 70%;
+    margin-bottom: 10px;
+  }
+  .lg-header-box {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .sm-img-radius {
+    border-radius: 10px 0px 0px 10px;
+  }
+  .lg-img-radius {
+    border-radius: 10px 10px 0px 0px;
+  }
+  .btn-hover {
+    background-color: #EEF1FF;
+    color: #916BBF;
+  }
+  .card-hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: box-shadow 0.4s;
+  }
+  .border-box {
+    border: solid 2px black;
+  }
+  .border-bottom {
+    border-bottom: solid 1.5px #5484ab;
+  }
+  .border-input {
+    /* border: 3px solid #5484ab; */
+    border: none;
+  }
+}
+
+@tailwind utilities;
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  color: #292929;
+}
+
+a {
+  color: #2C74B3;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a:hover {
+  color: #FF597B;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 0px auto;
+}
+
+h1,
+h2 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+h3 {
+  margin: 10px 0px;
+}
+
+p {
+  margin: 10px 0px;
+}
+
+ul {
+  padding: 5px 10px 5px 30px;
+  margin: 0px auto;
+}
+
+li {
+  margin: 5px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+#ez-toc-container {
+  display: none;
+}

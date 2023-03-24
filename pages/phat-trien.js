@@ -1,9 +1,10 @@
-import PostGrid from "../components/post-gird";
-import css from "../styles/page.module.css";
-import client from "../lib/apollo";
-import Layout from "../components/layout";
 import { GET_DAY_THI, GET_DI_HOC, GET_RANG_SUA, GET_SO_SINH } from "../lib/postByCate";
 import Head from "next/head";
+import client from "../lib/apollo";
+import Layout from "../components/layout";
+import HeroSection from "../components/hero/heroSection";
+import PostGrid from "../components/grid/postGrid";
+import data from "../lib/pageData";
 
 const Phat_trien = ({ so_sinh, rang_sua, di_hoc, day_thi }) => {
   
@@ -16,20 +17,17 @@ const Phat_trien = ({ so_sinh, rang_sua, di_hoc, day_thi }) => {
         <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"></meta>
       </Head>
 
-      <div className={css.outerBox}>
+      <div>
 
-        <div className={css.headerBox}>
-          <div className={css.header}>Phát triển</div>
-          <div className={css.detail}>Con bạn có phát triển thể chất, vận động, tinh thần đúng với lứa tuổi ?</div>
-        </div>
+        <HeroSection data={data.phattrien} />
 
-        <PostGrid content={so_sinh} />
+        <PostGrid postArray={so_sinh} />
 
-        <PostGrid content={rang_sua} />
+        <PostGrid postArray={rang_sua} />
 
-        <PostGrid content={di_hoc} />
+        <PostGrid postArray={di_hoc} />
 
-        <PostGrid content={day_thi} />
+        <PostGrid postArray={day_thi} />
         
       </div>
 

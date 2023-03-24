@@ -1,6 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import client from "../lib/apollo";
-import "../styles/global.css";
+import "../styles/globals.css";
 
 const App = ({ Component, pageProps }) => {
   return (

@@ -1,9 +1,10 @@
-import PostGrid from "../components/post-gird";
-import css from "../styles/page.module.css";
-import client from "../lib/apollo";
 import { GET_AN_DAM, GET_DINH_DUONG_HANG_NGAY, GET_THUC_PHAM_BO_SUNG } from "../lib/postByCate";
-import Layout from "../components/layout";
 import Head from "next/head";
+import client from "../lib/apollo";
+import Layout from "../components/layout";
+import HeroSection from "../components/hero/heroSection";
+import PostGrid from "../components/grid/postGrid";
+import data from "../lib/pageData";
 
 const Dinh_duong = ({ an_dam, dinh_duong_hang_ngay, thuc_pham_bo_sung }) => {
 
@@ -16,18 +17,15 @@ const Dinh_duong = ({ an_dam, dinh_duong_hang_ngay, thuc_pham_bo_sung }) => {
         <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"></meta>
       </Head>
 
-      <div className={css.outerBox}>
+      <div>
 
-        <div className={css.headerBox}>
-          <div className={css.header}>Dinh dưỡng</div>
-          <div className={css.detail}>Ăn dặm, uống sữa, bổ sung vitamin và nhiều vấn đề thiết thực khác đang đợi bạn khám phá</div>
-        </div>
+        <HeroSection data={data.dinhduong} />
 
-        <PostGrid content={an_dam} />
+        <PostGrid postArray={an_dam} />
 
-        <PostGrid content={dinh_duong_hang_ngay} />
+        <PostGrid postArray={dinh_duong_hang_ngay} />
 
-        <PostGrid content={thuc_pham_bo_sung} />
+        <PostGrid postArray={thuc_pham_bo_sung} />
         
       </div>
 

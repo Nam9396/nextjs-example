@@ -1,5 +1,5 @@
 module.exports = {
     images: {
-      domains: ['bibohealth.com'],
+      domains: ['bibohealth.com', 'img.freepik.com'],
     },
 }

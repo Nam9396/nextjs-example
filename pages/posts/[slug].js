@@ -1,19 +1,18 @@
-import css from "../../styles/uri.module.css";
-import Image from "next/image";
 import client from "../../lib/apollo";
-import { createPathsParams, GET_LASTED_POST, GET_POST_BY_GROUP, GET_POST_BY_SLUG, GET_SLUG_50, replaceUri, getPostsByCategories } from "../../lib/function";
-import Side_bar from "../../components/side-bar";
-import Layout from "../../components/layout";
+import { createPathsParams, GET_LASTED_POST, GET_POST_BY_GROUP, GET_POST_BY_SLUG, GET_SLUG_50 } from "../../lib/function";
 import { useRouter } from "next/router";
-import Share from "../../components/share-bar";
-import PostGrid from "../../components/post-gird";
 import { useEffect } from "react";
 import { useLazyQuery } from "@apollo/client";
-import Loading from "../../components/loading";
-import PostMeta from "../../components/postMeta";
 
-const SLUG = ({ post, lasted_post }) => {
+import clsx from "clsx";
+import SideBar from "../../components/aside/sidebar";
+import Layout from "../../components/layout";
+import Post from "../../components/post/post";
+import PostGrid from "../../components/grid/postGrid";
+import ShareBar from "../../components/aside/shareBar";
+import Loading from "../../components/loading/loading";
 
+const SLUG = ({ post, new_post }) => {
   const router = useRouter();
   if (router.isFallback) {
     return <Loading />
@@ -28,57 +27,31 @@ const SLUG = ({ post, lasted_post }) => {
   return (
     <Layout>
 
-      <PostMeta postSeo={post.seo} /> 
-      
-      <div className={css.slug}>
+      <div>
 
-        <div className={css.content}>
-          <Share postSlug={post.slug} />
-          <div className={css.imgBox}>
-            <Image
-                priority
-                src={post.featuredImage.node.sourceUrl}
-                alt=""
-                size=""
-                fill
-                className={css.img}
-            />  
-          </div>
-
-          <div>{post.seo.fullHead}</div>
-          <div onClick={(e) => {
-            e.preventDefault();
-            const url = e.target.href;
-            if (url.includes("bibohealth.com")) {
-              const internalLink = replaceUri(url);
-              router.push(`/posts/${internalLink}`);
-              // window.open(`https://bacsichobeyeu.com/posts/${internalLink}`,
-              // '_blank', 'noopener,noreferrer'
-              // );
-            } else {
-              window.open(url, '_blank', 'noopener,noreferrer');
-            }
-          }} className={css.article}>
-
-            <article 
-              dangerouslySetInnerHTML={{__html: post.content}}
-            ></article>
-
+        <div className={clsx(
+          'w-full h-fit p-2 box-col justify-center items-center'
+        )}>
+          <ShareBar postSlug={post.slug} />
+          <div className={clsx(
+            'w-full h-fit box-col justify-center items-center',
+            'lg:w-[80%] lg:box-row lg:justify-between lg:items-start'
+          )}>
+            <Post post={post} />
+            <SideBar newPost={new_post} />
           </div>
 
         </div>
-        
-        <Side_bar lasted_post={lasted_post} />
 
-      </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{`Error! ${error}`}</p>
+        ) : data ? (
+          <PostGrid postArray={data.posts.nodes} />
+        ) : null}
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{`Error! ${error}`}</p>
-      ) : data ? (
-        <PostGrid content={data.posts.nodes} />
-      ) : null}
+      </div>      
 
     </Layout>
   )    
@@ -98,28 +71,28 @@ export const getStaticProps = async ({ params }) => {
   });
 
   const post = response_1?.data?.post;
-  const lasted_post = response_2?.data?.posts?.nodes;
+  const new_post = response_2?.data?.posts?.nodes;
   
   return {
     props: {
       post,
-      lasted_post,
+      new_post,
     }
   }
 };
 
-export const getStaticPaths = createPathsParams;
+// export const getStaticPaths = createPathsParams;
 
-// export const getStaticPaths = async () => {
-//   const response1 = await client.query({
-//     query: GET_SLUG_50
-//   });
-//   const slug_50 = response1?.data?.posts?.nodes;
-//   const paths = slug_50.map(item => ({
-//     params: {slug: item.slug}
-//   }));
-//   return {
-//     paths, 
-//     fallback: true
-//   }
-// };
+export const getStaticPaths = async () => {
+  const response1 = await client.query({
+    query: GET_SLUG_50
+  });
+  const slug_50 = response1?.data?.posts?.nodes;
+  const paths = slug_50.map(item => ({
+    params: {slug: item.slug}
+  }));
+  return {
+    paths, 
+    fallback: true
+  }
+};

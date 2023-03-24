@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { changeCanonical, changeTitle } from "../lib/metaFunction";
+import { changeCanonical, changeTitle } from "../../lib/metaFunction";
 
 const PostMeta = ({ postSeo }) => {
   return (

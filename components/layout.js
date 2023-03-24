@@ -1,18 +1,17 @@
-import Footer from "./footer";
-import css from "./layout.module.css";
+import Footer from "./footer/footer";
+import Main from "./main/main";
+import Nav from "./nav/nav";
 import Meta from "./meta";
-import Nav from "./nav";
 
 const Layout = ({ children }) => {
   return (
-    <div className={css.layout}>
+    <div className="">
       <Meta />
-      <Nav/>
-      <main className={css.main}>{children}</main>
+      <Nav />
+      <Main children={children} />
       <Footer />
     </div>
   )
 };
 
 export default Layout;
-

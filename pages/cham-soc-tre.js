@@ -1,9 +1,10 @@
-import PostGrid from "../components/post-gird";
-import css from "../styles/page.module.css";
-import client from "../lib/apollo";
 import { GET_BE_BENH, GET_BE_KHOE, GET_SO_CAP_CUU } from "../lib/postByCate";
-import Layout from "../components/layout"; 
 import Head from "next/head";
+import client from "../lib/apollo";
+import Layout from "../components/layout";
+import HeroSection from "../components/hero/heroSection";
+import PostGrid from "../components/grid/postGrid";
+import data from "../lib/pageData";
 
 const Cham_soc_tre = ({ be_khoe, be_benh, so_cap_cuu }) => {
   
@@ -16,19 +17,16 @@ const Cham_soc_tre = ({ be_khoe, be_benh, so_cap_cuu }) => {
         <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"></meta>
       </Head>
 
-      <div className={css.outerBox}>
+      <div>
+
+        <HeroSection data={data.chamsoctre} />
+
+        <PostGrid postArray={be_khoe} />
+
+        <PostGrid postArray={be_benh} />
+
+        <PostGrid postArray={so_cap_cuu} />
         
-        <div className={css.headerBox}>
-          <div className={css.header}>Chăm sóc trẻ</div>
-          <div className={css.detail}>Làm gì khi con bị bệnh và cách chăm sóc lúc trẻ khỏe mạnh</div>
-        </div>
-
-        <PostGrid content={be_khoe} />
-
-        <PostGrid content={be_benh} />
-
-        <PostGrid content={so_cap_cuu} />
-      
       </div>
 
     </Layout>
