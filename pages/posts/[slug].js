@@ -81,18 +81,18 @@ export const getStaticProps = async ({ params }) => {
   }
 };
 
-// export const getStaticPaths = createPathsParams;
+export const getStaticPaths = createPathsParams;
 
-export const getStaticPaths = async () => {
-  const response1 = await client.query({
-    query: GET_SLUG_50
-  });
-  const slug_50 = response1?.data?.posts?.nodes;
-  const paths = slug_50.map(item => ({
-    params: {slug: item.slug}
-  }));
-  return {
-    paths, 
-    fallback: true
-  }
-};
+// export const getStaticPaths = async () => {
+//   const response1 = await client.query({
+//     query: GET_SLUG_50
+//   });
+//   const slug_50 = response1?.data?.posts?.nodes;
+//   const paths = slug_50.map(item => ({
+//     params: {slug: item.slug}
+//   }));
+//   return {
+//     paths, 
+//     fallback: true
+//   }
+// };
