@@ -21,7 +21,7 @@ const MobileMenu = () => {
       </div>
 
       <div className={clsx( 
-        'w-full h-fit border-box',
+        'w-full h-fit',
         display ? 'box-col justify-center items-center' : 'hidden',
       )}>
         <Link href='/' className="text-base text-a font-bold px-4 py-1 rounded-full mb-1 hover:btn-hover">{nav.p[0]}</Link>
