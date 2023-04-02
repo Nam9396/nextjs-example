@@ -14,7 +14,7 @@ const Post = ({ post }) => {
       'md:w-[90%] lg:w-[60%]'
     )}>
 
-      <PostMeta postSeo={post.seo} />
+      <PostMeta post={post} />
 
       <div className="relative w-full h-0 pb-[50%]">
         <Image

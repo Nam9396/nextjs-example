@@ -10,7 +10,7 @@ import {
   EmailIcon,
 } from 'next-share';
 
-const ShareBar = ({ postSlug }) => {
+const ShareBar = ({ post }) => {
   return (
     <div className={clsx(
       'w-[70%] h-fit pt-1 px-4 rounded-full box-row justify-between items-center my-4 bg-light_purple ',
